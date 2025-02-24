@@ -1,0 +1,643 @@
+/* Layout: Sidebar + Main Content */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+  }
+  
+
+  .sidebar {
+    width: 200px;
+    height: 600px;
+    background: linear-gradient(90deg, #1b9a21, #b686c4);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .logo-section {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .sidebar-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .nav-buttons button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 12px;
+    background: #fff;
+    color: #6a1b9a;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .nav-buttons button:hover {
+    background: #6a1b9a;
+    color: #fff;
+  }
+
+
+  /* Hamburger Icon - hidden on large screens */
+  .menu-icon {
+    display: none;               /* Show only on small screens */
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 2001;
+    font-size: 2em;
+    background-color: #494949;
+    color: #fff;
+    border-radius: 5px;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+/* Show the hamburger on smaller screens */
+@media (max-width: 600px) {
+  .menu-icon {
+    display: block;
+  }
+
+  /* Sidebar hidden off-screen by default on small screens */
+  .sidebar {
+    position: fixed;
+    left: -250px; /* Offscreen initially */
+    top: 0;
+    width: 250px;
+    transition: left 0.3s ease;
+  }
+
+  /* Slide in when toggled */
+  .sidebar.open {
+    left: 0;
+  }
+}
+
+
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Header in Main Content */
+  .app-header {
+    background: linear-gradient(90deg, #1b9a21, #b686c4);
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .app-header h1 {
+    margin: 0;
+  }
+  
+  .sub-title {
+    margin-top: 5px;
+    font-size: 0.9em;
+    color: #555;
+  }
+
+
+  /* Popup Form */
+.form-popup {
+    display: none; 
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    z-index: 1000;
+    width: 300px;
+  }
+
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  .form-container label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  .form-container input {
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-container .btn {
+    margin-top: 20px;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    background-color: #28a745;
+    color: white;
+    font-size: 1em;
+  }
+  
+  .form-container .btn.cancel {
+    background-color: red;
+    margin-top: 10px;
+  }
+
+/* Book Table */
+#bookTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  #bookTable th, #bookTable td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  #bookTable th {
+    background-color: #4CAF50;
+    color: white;
+  }
+
+
+/******************************
+  NEON-STYLE CHATBOT THEME
+*******************************/
+/* Chat Icon Container */
+.chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.chat-icon {
+  background-color: #111;
+  border: 2px solid #0fff95;
+  box-shadow: 0 0 10px #0fff95;
+}
+
+/* The Font Awesome Icon Itself */
+.chat-icon i {
+  color: #0fff95;         /* bluish icon color */
+  font-size: 1.5em;    /* Adjust icon size */
+}
+
+/* Hover effect */
+.chat-icon:hover {
+  background-color: #9c27b0; /* Lighter purple on hover */
+  transform: scale(1.1);     /* Slight zoom */
+}
+
+
+
+/* Chat Window Container - Dark neon style */
+.chat-window-container {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 420px;
+  max-height: 450px;
+  background: #1c1c1c;              /* Dark background */
+  border: 2px solid #0fff95;        /* Neon border */
+  border-radius: 10px;
+  display: none;                    /* Hidden by default */
+  flex-direction: column;
+  z-index: 1000;
+  box-shadow: 0 0 15px #0fff95;     /* Neon glow */
+}
+
+/* Chat Header */
+.chat-header {
+  background: #111;          /* Slightly lighter than container */
+  color: #0fff95;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Close Button in Chat Header */
+.chat-header #closeChat {
+  background: none;
+  border: 2px solid #0fff95;
+  color: #0fff95;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 4px;
+  padding: 0 8px;
+}
+
+.chat-header #closeChat:hover {
+  background-color: #0fff95;
+  color: #111;
+}
+
+/* Chat Messages Section */
+.chat-messages {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background-color: #2a2a2a; /* Slightly different dark shade */
+  color: #eee;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Chat Input Container */
+.chat-input-container {
+  display: flex;
+  border-top: 2px solid #0fff95;  /* Neon border top */
+}
+
+.chat-input-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  background: #333;     /* Dark input field */
+  color: #fff;          /* White text */
+  font-family: inherit;
+}
+
+.chat-input-container input::placeholder {
+  color: #aaa;          /* Subtle placeholder color */
+}
+
+.chat-input-container button {
+  padding: 10px 14px;
+  background: #111;
+  color: #0fff95;
+  border: 2px solid #0fff95;
+  cursor: pointer;
+  border-bottom-right-radius: 10px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.chat-input-container button:hover {
+  background: #0fff95;  /* Neon fill on hover */
+  color: #111;
+}
+
+/* Message Bubbles */
+.message {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.bot-message {
+  justify-content: flex-start;
+}
+
+/* Bubble Appearance */
+.message-content {
+  background: #333;                /* Dark bubble */
+  color: #fff;                     /* White text */
+  padding: 8px 12px;
+  border-radius: 8px;
+  max-width: 70%;
+  box-shadow: 0 0 5px #0fff95;     /* Neon glow around bubble */
+}
+
+/* Optional: profile-image if you use avatars */
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+ /* Notification Styling */
+ .notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ec0000;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 2000;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+    font-size: 1em;
+  }
+
+
+
+  /* Hover Effect */
+#addBookBtn:hover {
+    background-color: #e00000; /* Darker red on hover */
+    transform: scale(1.05);
+}
+
+  /* Responsive for Small Screens */
+@media (max-width: 768px) {
+    .sidebar {
+      width: 200px;
+    }
+    .nav-buttons button {
+      font-size: 0.9em;
+      margin: 8px 0;
+    }
+    .main-content {
+      padding: 10px;
+    }
+    .modal-content {
+      width: 80%;
+    }
+  }
+
+  @media (max-width: 5px) {
+    .sidebar {
+      display: none; /* Hide sidebar on very small screens (optional) */
+    }
+    .main-content {
+      margin-left: 0;
+    }
+    #bookTable {
+      font-size: 0.9em;
+    }
+  }
+
+/* Button Styles for Table Actions */
+.edit-btn {
+    background-color: #17b103;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .delete-btn {
+    background-color: #17b103;
+    color: black;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e00000;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e00000;
+  }
+
+  #filterBtn:hover{
+    background-color: #e00000;
+  }
+
+  #loginBtn:hover{
+    background-color: #e00000;
+  }
+
+
+  /* Style for buttons inside the filter dropdown */
+  .filter-options button {
+    width: 100px;
+    margin-bottom: 15px;
+    padding: 8px;
+    background: green;
+    text-align: left;
+    cursor: pointer;
+    color: white; /* White text for contrast */
+  }
+
+
+
+    /* Style for the filter dropdown selects */
+    #genre-filter,
+    #author-filter {
+      padding: 8px;
+      margin-bottom: 15px;
+      background-color: rgb(56, 104, 56);
+      color: #ccc;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+  /* Hover effect for dropdown buttons */
+  .filter-options button:hover {
+    background-color: #e00000; /* Darker green on hover */
+  }
+
+  @media (max-width: 600px) {
+    input[type="text"] {
+      width: 60%;
+    }
+    button {
+      padding: 0.5rem;
+    }
+  }
+
+
+/* Media Queries for Mobile Devices */
+@media (max-width: 600px) {
+    .chat-window-container {
+      width: 90%;
+      right: 5%;
+      bottom: 80px;
+      max-height: 300px;
+    }
+    
+    .chat-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.5em;
+      bottom: 20px;
+      right: 5%;
+    }
+    
+    .chat-header {
+      padding: 8px;
+      font-size: 1em;
+    }
+    
+    .chat-input-container input {
+      padding: 6px;
+      font-size: 0.9em;
+    }
+    
+    .chat-input-container button {
+      padding: 6px 10px;
+      font-size: 0.9em;
+    }
+  }
+
+
+
+
+/*Adjustments for Tablets & Small Screens */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-logo {
+        margin-bottom: 10px;
+    }
+  }
+
+
+
+
+/* Adjustments for Tablets & Small Screens */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .header-logo {
+        margin-bottom: 10px;
+    }
+
+
+    .header-text {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .header-text h1 {
+        font-size: 2em; /* Reduce size for better mobile fit */
+    }
+
+    .tagline {
+        font-size: 0.9em;
+    }
+
+    /* Move Login Button Below Text */
+    #loginBtn {
+        position: static;
+        margin-top: 10px;
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+
+
+    /* Move register Button Below Text */
+    #registerBtn {
+        position: static;
+        margin-top: 10px;
+        font-size: 0.9em;
+        padding: 8px 16px;
+    }
+}
+
+/* Adjustments for Mobile Phones */
+@media (max-width: 480px) {
+    .header-text {
+        text-align: center;
+        margin: 10px auto;
+    }
+
+    .header-text h1 {
+        font-size: 1.5em; /* Further reduce size */
+    }
+
+    .tagline {
+        font-size: 0.8em; /* Adjust tagline */
+    }
+
+    /* Move Login Button Below the Text */
+    #loginBtn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        margin-top: 10px;
+    }
+
+    /* Move Register Button Below the Text */
+    #registerBtn {
+        padding: 6px 12px;
+        font-size: 0.8em;
+        margin-top: 10px;
+    }
+}
+
+
+
+/* Responsive Design for Small Screens */
+@media (max-width: 600px) {
+    #addBookBtn {
+        width: 100%; /* Full width on small screens */
+        font-size: 1em; /* Reduce text size slightly */
+        padding: 10px; /* Adjust padding */
+    }
+}
+
+
+/* For screen widths up to 600px */
+@media (max-width: 600px) {
+    /* Make the entire form container stack items vertically */
+    #bookForm {
+      display: flex;
+      flex-direction: column;  /* Stack inputs & button */
+      align-items: stretch;    /* Let them span the container width */
+      margin: 0 auto;          /* Center the form if needed */
+      width: 100%;             /* Full width for small screens */
+    }
+  
+    /* Each input takes full width */
+    #bookForm input[type="text"],
+    #bookForm input[type="number"] {
+      width: 100%;
+      margin: 5px 0;          /* Space between fields */
+      box-sizing: border-box;  /* Ensures padding doesn’t overflow */
+    }
+  
+    /* The Add Book button also full width on small screens */
+    #bookForm button[type="submit"] {
+      width: 100%;
+      margin: 10px 0;
+      font-size: 1em;
+    }
+  
+    /* If you want the filter button or other buttons to adjust on small screens */
+    #filterBtn {
+      margin-top: 10px;
+      width: auto; /* or 100% if you prefer full width for the filter button */
+    }
+  }
