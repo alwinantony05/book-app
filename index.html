@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Book Tracker</title>
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="book-icon.png" type="image/x-icon">
+
+  <!-- Main Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+
+  <!-- font awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+</head>
+<body>
+
+
+
+
+  <!-- Hamburger Icon (only visible on small screens) -->
+   <div id="hamburgerIcon" class="menu-icon">
+    <i class="fas fa-bars"></i> <!-- Font Awesome bars icon -->
+  </div>
+
+
+
+
+
+
+  <!-- Sidebar for Navigation -->
+  <aside class="sidebar">
+    <div class="logo-section">
+      <img src="book-icon.png" alt="Book Icon" class="sidebar-logo" />
+      <h2>My Book Tracker</h2>
+    </div>
+    <nav class="nav-buttons">
+      <button id="addBookBtn">+ Add Book</button>
+      <button id="filterBtn">Filter</button>
+      <button id="loginBtn">Biometric Login</button>
+    </nav>
+  </aside>
+
+  <!-- Main Content Area -->
+  <div class="main-content">
+    <!-- Header or Title Section -->
+    <header class="app-header">
+      <h1>Bibliophile’s Haven</h1>
+      <p class="sub-title">Chapters &raquo; Chronicles</p>
+    </header>
+
+    <!-- Popup Form for Adding Books -->
+    <div id="popupForm" class="form-popup">
+      <form id="bookForm" class="form-container">
+        <h2>Add a New Book</h2>
+
+        <label for="titleInput"><b>Title</b></label>
+        <input type="text" id="titleInput" placeholder="Enter Title" required>
+
+        <label for="authorInput"><b>Author</b></label>
+        <input type="text" id="authorInput" placeholder="Enter Author" required>
+
+        <label for="genreInput"><b>Genre</b></label>
+        <input type="text" id="genreInput" placeholder="Enter Genre" required>
+
+        <label for="ratingInput"><b>Rating</b></label>
+        <input type="number" id="ratingInput" placeholder="1-5" min="1" max="5" required>
+
+        <button type="submit" class="btn">Add Book</button>
+        <button type="button" class="btn cancel" id="closeBtn">Close</button>
+      </form>
+    </div>
+
+    <!-- Filter Controls (Hidden by Default) -->
+    <div id="filterOptions" class="filter-options" style="display: none;">
+      <button data-filter="genre">By Genre</button>
+      <button data-filter="author">By Author</button>
+    </div>
+    <select id="genre-filter" style="display: none;">
+      <option value="All">All Genres</option>
+    </select>
+    <select id="author-filter" style="display: none;">
+      <option value="All">All Authors</option>
+    </select>
+
+    <!-- Book List Section -->
+    <section id="book-list-section">
+      <table id="bookTable">
+        <thead>
+          <tr>
+            <th>Book Title</th>
+            <th>Book Author</th>
+            <th>Book Genre</th>
+            <th>Book Rating</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="bookList"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <!-- Floating Chat Icon 
+  <div id="chatIcon" class="chat-icon">&#128233;</div>-->
+  <div id="chatIcon" class="chat-icon">
+    <i class="fa-solid fa-robot"></i>
+  </div>
+
+  <!-- Chat Window Container -->
+  <div id="chatWindowContainer" class="chat-window-container">
+    <div class="chat-header">
+      <span>Support >> Bot</span>
+      <button id="closeChat">X</button>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-input-container">
+      <input type="text" id="user-input" placeholder="Ask your question..." required>
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
+  <!-- Notification Element -->
+  <div id="notification" class="notification"></div>
+
+  <!-- Inline Script for Popup Toggle (Add Book) -->
+  <script>
+    // Ensure form is hidden and button is visible when the page loads
+    window.addEventListener('load', function () {
+      document.getElementById('popupForm').style.display = 'none';
+      document.getElementById('addBookBtn').style.display = 'block';
+    });
+
+    // Show the popup form and hide the button
+    document.getElementById('addBookBtn').addEventListener('click', function() {
+      document.getElementById('popupForm').style.display = 'block';
+      document.getElementById('addBookBtn').style.display = 'none';
+    });
+
+    // Hide the popup form and show the button again
+    document.getElementById('closeBtn').addEventListener('click', function() {
+      document.getElementById('popupForm').style.display = 'none';
+      document.getElementById('addBookBtn').style.display = 'block';
+    });
+
+
+
+
+
+  const hamburgerIcon = document.getElementById("hamburgerIcon");
+  const sidebar = document.querySelector(".sidebar");
+  
+  hamburgerIcon.addEventListener("click", () => {
+    // Toggle the 'open' class on the sidebar
+    sidebar.classList.toggle("open");
+  });
+  </script>
+  
+
+  <!-- Main Script for Firebase and Book Logic -->
+  <script src="script.js"></script>
+</body>
+</html>
