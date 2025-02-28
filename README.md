@@ -40,5 +40,5 @@ Bibliophile’s Haven is a web application that lets you track, rate, and organi
 
 
 ### live site link
-https://alwinanthony05.github.io/book-app/
+https://alwinantony05.github.io/book-app/
 
