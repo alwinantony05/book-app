@@ -35,7 +35,7 @@ Bibliophile’s Haven is a web application that lets you track, rate, and organi
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/alwinanthony05/book-app.git
+   git clone https://github.com/alwinantony05/book-app.git
 
 
 
